@@ -1,8 +1,12 @@
 <nav>
     <ul>
-        <li>home</li>
-        <li>signup</li>
-        <li>signin</li>
-        <li>signout</li>
+        <li><%= link_to "Home", root_path %></li>
+        <% if !user_signed_in? %>
+            <li><%= link_to "SignUp", new_user_registration_path %></li>
+            <li><%= link_to "SignIn", new_user_session_path %></li>
+        <% else %>
+            <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+        <% end %>
     </ul>
 </nav>
