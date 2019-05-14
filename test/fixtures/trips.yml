@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  renter_id: 1
+  rv_id: 1
+  number_of_guest: 1
+  start_date: MyString
+  end_date: MyString
+  name: MyString
+
+two:
+  renter_id: 1
+  rv_id: 1
+  number_of_guest: 1
+  start_date: MyString
+  end_date: MyString
+  name: MyString
