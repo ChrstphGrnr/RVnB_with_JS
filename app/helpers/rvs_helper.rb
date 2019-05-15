@@ -1,0 +1,2 @@
+module RvsHelper
+end
