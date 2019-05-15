@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_170757) do
+ActiveRecord::Schema.define(version: 2019_05_15_175629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "rvs", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
     t.integer "sleeps"
     t.string "price"
     t.datetime "created_at", null: false
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(version: 2019_05_15_170757) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "acc_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
