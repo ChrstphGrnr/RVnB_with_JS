@@ -1,6 +1,7 @@
 class RvsController < ApplicationController
 
     def new 
+        @rv = Rv
     end
 
     def create

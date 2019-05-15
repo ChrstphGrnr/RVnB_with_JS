@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :rvs, only: [:show] do 
+  resources :rvs, only: [:show, :index] do 
     resources :trips, only: [:new, :show, :index]
   end
 
