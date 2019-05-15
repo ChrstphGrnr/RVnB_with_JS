@@ -2,3 +2,11 @@
 <% if user_signed_in? %>
     <h2>Welcome <%= current_user.first_name %>!</h2>
 <% end %>
+
+<ul>
+<% @rvs.each do |rv|  %>
+
+  <li>  <%= link_to rv.name, rv_path(rv) %></li>
+
+  <% end %>
+</ul>
