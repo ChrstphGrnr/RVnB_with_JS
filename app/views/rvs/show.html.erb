@@ -1,3 +1,7 @@
 <h1><%= @rv.name %></h1>
 
-<%= link_to "create a new trip with this rv", new_rv_trip_path(@rv) %>
+<% if user_signed_in? %>
+    <%= link_to "create a new trip with this rv", new_rv_trip_path(@rv) %>
+<% else %>
+    Please <%= link_to "SignIn", new_user_session_path %> or <%= link_to "SignUp", new_user_session_path %> to go on a trip with this RV.
+<% end %>

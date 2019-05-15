@@ -1,11 +1,10 @@
 class TripsController < ApplicationController
 
     def new
-        # byebug
-        if params[:rv_id]
-            @trip = Trip.new(rv_id: params[:rv_id])
+        if user_signed_in? && params[:rv_id]
+            @trip = Trip.new(rv_id: params[:rv_id], user_id: current_user.id)
         else 
-            @trip = Trip.new
+            redirect_to new_user_session_path, alert: "Please login before creating a new Trip"
         end
                 
     end
