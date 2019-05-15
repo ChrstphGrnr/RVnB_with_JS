@@ -20,10 +20,10 @@
 
   <div class="field"> 
     <% account_options = ['Owner', 'Renter'] %>
-    <%= f.label :type, 'Account Type:' %>   <br>
+    <%= f.label :acc_type, 'Account Type:' %>   <br>
     <% account_options.each do |a| %>
       <%= f.label a %>
-      <%= f.radio_button :type, a %>
+      <%= f.radio_button :acc_type, a %>
     <% end %>
   </div>
 
