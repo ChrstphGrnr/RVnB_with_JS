@@ -18,14 +18,6 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field"> 
-    <% account_options = ['Owner', 'Renter'] %>
-    <%= f.label :acc_type, 'Account Type:' %>   <br>
-    <% account_options.each do |a| %>
-      <%= f.label a %>
-      <%= f.radio_button :acc_type, a %>
-    <% end %>
-  </div>
 
   <div class="field">
     <%= f.label :password %>
