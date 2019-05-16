@@ -262,7 +262,6 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :github, 'a89f011dde6df7251bc4', 'd11dc553387139e3643d40763983885fcf2f3b48', scope: 'user:email'
 
-  
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

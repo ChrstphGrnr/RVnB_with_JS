@@ -23,8 +23,6 @@
   </div>
 <% end %>
 
-<div>
-  <%= link_to "SignIn with Github", user_github_omniauth_authorize_path %>
+<div class="links">
+  <%= render "devise/shared/links" %>
 </div>
-
-<%= render "devise/shared/links" %>
