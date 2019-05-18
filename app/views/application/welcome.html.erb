@@ -1,6 +1,10 @@
 <h1>RVBnB</h1>
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.first_name %>
     <h2>Welcome <%= current_user.first_name %>!</h2>
+  <% elsif user_signed_in? && !current_user.first_name %>
+    <h2>Welcome <%= current_user.email %></h2>
+  <% else %>
+    <h2>Welcome, please SignIn or SignUp</h2>
 <% end %>
 
 <ul>
