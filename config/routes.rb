@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :trips, only: [:new, :edit, :index, :show, :create]
+  resources :trips, only: [:new, :edit, :index, :show, :create, :update]
   
   devise_for :users, :controllers => { registrations: 'registrations' }, :controllers => {omniauth_callbacks: "callbacks"}
   resources :users do 
-    resources :trips, only: [:index, :show]    
+    resources :trips  
   end
 
 
