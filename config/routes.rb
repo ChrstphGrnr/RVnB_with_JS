@@ -4,17 +4,12 @@ Rails.application.routes.draw do
     resources :trips, only: [:new, :show, :index]
   end
 
-  resources :users, only: [:show] do 
-    resources :trips, only: [:show, :index]
-  end
 
-
-  
   resources :trips, only: [:new, :edit, :index, :show, :create]
   
   devise_for :users, :controllers => { registrations: 'registrations' }, :controllers => {omniauth_callbacks: "callbacks"}
   resources :users do 
-    resources :trips, only: [:index]    
+    resources :trips, only: [:index, :show]    
   end
 
 
