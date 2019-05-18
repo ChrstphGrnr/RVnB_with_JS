@@ -1,6 +1,1 @@
-<% @rvs.each do |rv| %>
-<ul>
-    <li><%= link_to rv.name, rv_path(rv) %></li>
-</ul>
-
-<% end %>
+<% render partial: 'index', locals: {rvs: @rvs}
