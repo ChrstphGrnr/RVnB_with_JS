@@ -1,3 +1,7 @@
+<ul>
 <% @trips.each do |trip| %>
-    <%= link_to trip.name, trip_path(trip) %>
+    <li><p><%= link_to trip.name, user_trip_path(trip.user_id, trip) %></p>
+            <%= link_to 'Delete', trip_path(trip), method: :delete, data: {confirm: "Are you sure? This cannot be undone!"} %></li>
+            <%= link_to 'Edit', edit_trip_path(trip) %></li>
 <% end %>
+</ul>
