@@ -1,6 +1,15 @@
+<div><p><%= @trip.name %> </p></div>
+
 <%= @trip.rv.name %>
 <br>
+<p>Number of Guests:</p>
+<%= @trip.guests %>
+<br>
 
-Total Trip Price: <br>
-$ <%= @trip.total_price %>
+<p>    Total Trip Price:</p>
+<%= @trip.total_price %>
+
+
+<%= link_to 'Edit', edit_user_trip_path(@trip.user_id, @trip)  %>
+<%= link_to 'Delete', trip_path(@trip), method: :delete, data: {confirm: 'You are about to delete this Trip. This cannot be reversed. Are you sure?'} %>
 
