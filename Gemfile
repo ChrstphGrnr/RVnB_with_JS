@@ -30,6 +30,7 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
+gem 'materialize-sass'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

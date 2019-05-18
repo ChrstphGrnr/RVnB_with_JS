@@ -8,5 +8,7 @@ class Rv < ApplicationRecord
     def self.order_by_price
         order("price ASC")
     end
+
+    # implement booked dates ! ! ! ! !
     
 end

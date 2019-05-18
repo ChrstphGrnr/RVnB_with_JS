@@ -1,13 +1,17 @@
 <nav>
-    <ul>
-        <li><%= link_to "Home", root_path %></li>
-        <% if !user_signed_in? %>
-            <li><%= link_to "SignUp", new_user_registration_path %></li>
-            <li><%= link_to "SignIn", new_user_session_path %></li>
-        <% else %>
-            <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-            <li><%= link_to "MyTrips", user_trips_path(current_user.id)  %></li>
-        <% end %>
-    </ul>
+    <div class="nav-wrapper blue-grey darken-1">
+        <div class="container">
+            <ul>
+                <li><%= link_to "Home", root_path %></li>
+                <% if !user_signed_in? %>
+                    <li><%= link_to "SignUp", new_user_registration_path %></li>
+                    <li><%= link_to "SignIn", new_user_session_path %></li>
+                <% else %>
+                    <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
+                    <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                    <li><%= link_to "MyTrips", user_trips_path(current_user.id)  %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
 </nav>
