@@ -1,16 +1,10 @@
-<h1>RVBnB</h1>
+
 <% if user_signed_in? && current_user.first_name %>
-    <h2>Welcome <%= current_user.first_name %>!</h2>
+    <h4>Welcome <%= current_user.first_name %>!</h4>
   <% elsif user_signed_in? && !current_user.first_name %>
-    <h2>Welcome <%= current_user.email %></h2>
+    <h4>Welcome <%= current_user.email %></h4>
   <% else %>
-    <h2>Welcome, please SignIn or SignUp</h2>
+    <h4>Welcome, please SignIn or SignUp</h4>
 <% end %>
 
-<ul>
-<% @rvs.each do |rv|  %>
-
-  <li>  <%= link_to rv.name, rv_path(rv) %></li>
-
-  <% end %>
-</ul>
+<%= render partial: 'rvs/index', locals: {rvs: all_rvs} %>
