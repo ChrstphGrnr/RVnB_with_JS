@@ -1,0 +1,42 @@
+<div class="row">
+<div class="col s6">
+<% rvs.each do |rv| %>
+<ul>
+    <div class="class card">
+    <li><%= link_to rv.name, rv_path(rv) %></li>
+    </div>
+</ul>
+
+<% end %>
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="card-panel teal lighten-1">
+    <span class="grey-text text-darken-3 center"><h5>RV Index</h5></span>
+</div>
+
+<div class="row">
+
+    <% Rv.all.each do |rv|%>
+
+        <div class="col s4">
+          <div class="card large teal lighten-2 z-depth-5">
+            <div class="card-image">
+              <img src="<%= asset_path("#{rv.name}.jpg") %>" class="responsive-img">
+              <span class="card-title"><%=rv.name%></span>  
+            </div>
+            <div class="card-action">
+                <a href="rvs/<%=rv.id%>"><i class="material-icons icon-white darken-4">launch</i></a>
+            </div>
+          </div>
+        </div>
+
+    <%end%>
+</div>
+
