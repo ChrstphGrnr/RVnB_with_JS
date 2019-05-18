@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-
+   
     def new
         if user_signed_in? && params[:rv_id]
             # byebug
@@ -29,7 +29,7 @@ class TripsController < ApplicationController
     def index
         # if not logged_in -> Trip.all - if rv_id in params -> rv.trips - if user_id is in params -> user.trips
         if !user_signed_in? 
-            @trips = Trip.all
+            redirect_to new_user_session_path, alert: "Please SignIn to see your trips or to create new Trips!"
         elsif params[:rv_id]
            rv = Rv.find(params[:rv_id])
            @trips = rv.trips
@@ -39,9 +39,28 @@ class TripsController < ApplicationController
     end
 
     def edit 
+        @trip = Trip.find(params[:id])
+        if user_signed_in? && @trip.user_id == current_user.id
+            @trip
+        else 
+            redirect_to '', alert: "You don't have permission to edit this trip."
+        end 
+    end
+
+    def update 
+        # byebug
+        @trip = Trip.find(params[:id])
+        if @trip.update(trip_params)
+            redirect_to user_trip_path(current_user.id, @trip.id)
+        else 
+            # byebug
+            render 'edit'
+        end
     end
 
     def destroy
+        Trip.find(params[:id]).destroy
+        redirect_to user_trips_path(parmas[:user_id])
     end
 
     private 
