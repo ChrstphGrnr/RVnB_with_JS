@@ -2,6 +2,7 @@ class TripsController < ApplicationController
 
     def new
         if user_signed_in? && params[:rv_id]
+            # byebug
             @trip = Trip.new(rv_id: params[:rv_id], user_id: current_user.id)
         else 
             redirect_to new_user_session_path, alert: "Please login before creating a new Trip"
@@ -13,7 +14,8 @@ class TripsController < ApplicationController
         # byebug
         @trip = Trip.new(trip_params)
         if @trip.save 
-            redirect_to trip_path(@trip)
+            @trip.rv.trip_count += 1
+            redirect_to user_trip_path(current_user, @trip)
         else
             render 'trips/new', alert: "Invalid Data, please try again."
         end
