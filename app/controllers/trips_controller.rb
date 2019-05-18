@@ -26,7 +26,14 @@ class TripsController < ApplicationController
 
     def index
         # if not logged_in -> Trip.all - if rv_id in params -> rv.trips - if user_id is in params -> user.trips
-         
+        if !user_signed_in? 
+            @trips = Trip.all
+        elsif params[:rv_id]
+           rv = Rv.find(params[:rv_id])
+           @trips = rv.trips
+        elsif user_signed_in?
+            @trips = Trip.trips_by_user(current_user.id)
+        end
     end
 
     def edit 
