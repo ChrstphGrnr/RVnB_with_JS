@@ -1,7 +1,14 @@
-<ul>
-<% @trips.each do |trip| %>
-    <li><p><%= link_to trip.name, user_trip_path(trip.user_id, trip) %></p>
-            <%= link_to 'Delete', trip_path(trip), method: :delete, data: {confirm: "Are you sure? This cannot be undone!"} %></li>
-            <%= link_to 'Edit', edit_trip_path(trip) %></li>
-<% end %>
+<div class="row">
+<div class="col s6">
+    <ul>
+        <% @trips.each do |trip| %>
+            <div class="card blue-grey lighten-3">
+            <li><p><%= link_to trip.name, user_trip_path(trip.user_id, trip) %></p>
+                    <%= link_to 'Delete', trip_path(trip), method: :delete, data: {confirm: "Are you sure? This cannot be undone!"} %></li>
+                    <%= link_to 'Edit', edit_trip_path(trip) %></li>
+            </div>
+        <% end %>
+        
 </ul>
+</div>
+</div>
