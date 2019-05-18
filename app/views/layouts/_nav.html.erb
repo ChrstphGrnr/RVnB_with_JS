@@ -7,7 +7,7 @@
         <% else %>
             <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-            <li><%= link_to "MyTrips"  %></li>
+            <li><%= link_to "MyTrips", user_trips_path(current_user.id)  %></li>
         <% end %>
     </ul>
 </nav>
