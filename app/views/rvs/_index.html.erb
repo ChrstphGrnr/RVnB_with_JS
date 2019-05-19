@@ -1,12 +1,17 @@
 <div class="card-panel teal lighten-1">
-    <span class="grey-text text-darken-3 center"><h5>RV Index</h5></span>
+    <span class="grey-text text-darken-3 center" >
+      <h5>RV Index</h5>
+        <a href="<%= rv_path(most_popular) %>" class="waves-effect waves-light teal darken-4 btn-small">Most Popular</a>
+        <a href="/sort_by_price" class="waves-effect waves-light teal darken-4 btn-small">Sort By Price</a>
+
+    </span>
 </div>
 
 <div class="row">
 
-    <% all_rvs.each do |rv|%>
+    <% @rvs.each do |rv|%>
 
-        <div class="col s4">
+        <div class="col s6">
           <div class="card teal lighten-2 z-depth-5">
             <div class="card-image">
               <img src="<%= asset_path("#{rv.name}.jpg") %>" class="responsive-img">
@@ -19,7 +24,6 @@
             </div>
           </div>
         </div>
-
     <%end%>
 </div>
 
