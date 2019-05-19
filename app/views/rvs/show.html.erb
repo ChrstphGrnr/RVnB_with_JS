@@ -1,7 +1,17 @@
+<div class="container">
+
+<img src="<%= asset_path("#{@rv.name}.jpg") %>" alt='<%= "#{@rv.name}" %>'' class="responsive-img circle">
+
 <h1><%= @rv.name %></h1>
+<h4>Sleeps: <%= @rv.sleeps %></h4>
+<h4>Price/Night: $<%= @rv.price %></h4>
 
 <% if user_signed_in? %>
+    <div class="waves-effect waves-light btn-large center">
     <%= link_to "create a new trip with this rv", new_rv_trip_path(@rv) %>
+    </div>
 <% else %>
     Please <%= link_to "SignIn", new_user_session_path %> or <%= link_to "SignUp", new_user_session_path %> to go on a trip with this RV.
 <% end %>
+
+</div>
