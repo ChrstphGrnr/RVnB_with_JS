@@ -27,7 +27,6 @@ class TripsController < ApplicationController
     end
 
     def index
-        # if not logged_in -> Trip.all - if rv_id in params -> rv.trips - if user_id is in params -> user.trips
         if !user_signed_in? 
             redirect_to new_user_session_path, alert: "Please SignIn to see your trips or to create new Trips!"
         elsif user_signed_in? && params[:rv_id]
