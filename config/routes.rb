@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :trips, only: [:new, :edit, :index, :show, :create, :update]
+  resources :trips
   
   devise_for :users, :controllers => { registrations: 'registrations' }, :controllers => {omniauth_callbacks: "callbacks"}
   resources :users do 
