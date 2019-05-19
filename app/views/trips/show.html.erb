@@ -1,15 +1,20 @@
-<div><p><%= @trip.name %> </p></div>
+<div><p>Destination: <%= @trip.name %> </p></div>
 
-<%= @trip.rv.name %>
+RV Name: <%= @trip.rv.name %>
 <br>
-<p>Number of Guests:</p>
-<%= @trip.guests %>
+<p>Number of Guests: <%= @trip.guests %></p>
+
 <br>
 
 <p>    Total Trip Price:</p>
 <%= @trip.total_price %>
+<br>
 
-
-<%= link_to 'Edit', edit_user_trip_path(@trip.user_id, @trip)  %>
-<%= link_to 'Delete', user_trip_path(@trip.user_id, @trip), method: :delete, data: {confirm: 'You are about to delete this Trip. This cannot be reversed. Are you sure?'} %>
-
+<button class="waves-effect wave-light teal lighten-3 btn-small">
+    <%= form_tag user_trip_path(current_user.id, @trip.id), method: :delete %>
+    <%= submit_tag "Delete" %> <i class="material-icons left">delete</i>
+</button>
+<button class="waves-effect wave-light teal lighten-3 btn-small">
+    <%= form_tag user_trip_path(current_user.id, @trip.id), method: :edit %>
+    <%= submit_tag "Edit" %> <i class="material-icons left">edit</i>
+</button>
