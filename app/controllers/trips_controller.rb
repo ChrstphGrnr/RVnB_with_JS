@@ -48,19 +48,17 @@ class TripsController < ApplicationController
     end
 
     def update 
-        # byebug
         @trip = Trip.find(params[:id])
         if @trip.update(trip_params)
             redirect_to user_trip_path(current_user.id, @trip.id)
         else 
-            # byebug
             render 'edit'
         end
     end
 
     def destroy
         Trip.find(params[:id]).destroy
-        redirect_to user_trips_path(parmas[:user_id])
+        redirect_to user_trips_path(current_user.id)
     end
 
     private 
