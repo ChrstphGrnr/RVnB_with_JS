@@ -1,0 +1,25 @@
+<footer class="page-footer teal">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">RVBnB - A Rails Application</h5>
+                <p class="grey-text text-lighten-4">
+               This app was created by Christoph Gruener as part of the Flatiron School Curriculum. <br>
+                My family and I love the outdoors. 
+                We can't stop talking about the next great adventure we are wanting to do, usually in the beautiful backcountry of the US South West.
+                In order to do so, one usually needs to camp, and with small children, an RV of some sorts is very helpful. 
+                Here you can find one and rent it. Sort of. But you get the idea! </p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="<%= rvs_path %>">All RVs</a></li>
+                  <%if user_signed_in?%>
+                  <li><a class="grey-text text-lighten-3" href="<%= user_trips_path(current_user.id) %>">My Trips</a></li>
+                  <%end%>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/ChrstphGrnr/RVBnB">Github</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+</footer>
