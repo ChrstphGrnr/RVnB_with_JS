@@ -7,9 +7,7 @@
 <h4>Price/Night: $<%= @rv.price %></h4>
 
 <% if user_signed_in? %>
-    <div class="waves-effect waves-light btn-large center">
-    <%= link_to "create a new trip with this rv", new_rv_trip_path(@rv) %>
-    </div>
+    <a class="waves-effect waves btn teal" href="<%= new_rv_trip_path(@rv) %>">New Trip</a>
 <% else %>
     Please <%= link_to "SignIn", new_user_session_path %> or <%= link_to "SignUp", new_user_session_path %> to go on a trip with this RV.
 <% end %>
