@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper blue-grey darken-1">
+    <div class="nav-wrapper teal lighten-3">
         <div class="container">
                 <% if !user_signed_in? %>
                     <a href="/" class="brand-logo center">RVB'n'B</a>
@@ -13,6 +13,7 @@
                         <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
                         <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
                         <li><%= link_to "MyTrips", user_trips_path(current_user.id)  %></li>
+                        <li><%= link_to "RVs", rvs_path %></li>
                     </ul>
                 <% end %>
             </ul>
