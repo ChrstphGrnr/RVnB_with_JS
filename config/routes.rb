@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :trips
+  resources :trips, only: [:show, :create, :edit, :new, :delete, :update]
   
   devise_for :users, :controllers => { registrations: 'registrations' }, :controllers => {omniauth_callbacks: "callbacks"}
   resources :users do 
@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'application#welcome'
+
+  get '/sort_by_price', to: 'rvs#sort_by_price', as: '/sort_by_price'
+  
 end
