@@ -1,14 +1,31 @@
+
 <div class="row">
-<div class="col s6">
+
+<div class="card-panel teal lighten-1">
+    <span class="grey-text text-darken-3 center" >
+          <h6>My Trips Index</h6>
+    </span>
+</div>
     <% if @trips.empty?  %>
         <p>You haven't created any trips yet.</p>
-        <% else %>
+    <% else %>
     <ul>
         <% @trips.each do |trip| %>
-            <div class="card blue-grey lighten-3">
-            <li><p><%= link_to trip.name, user_trip_path(trip.user_id, trip) %></p>
-                    <%= link_to 'Delete', trip_path(trip), method: :delete, data: {confirm: "Are you sure? This cannot be undone!"} %></li>
-                    <%= link_to 'Edit', edit_trip_path(trip) %></li>
+        <li>
+            <div class="col s4">
+              <div class="card teal lighten-2 z-depth-5">
+              <div class="card-image">
+                <img src="<%= asset_path("#{trip.rv.name}.jpg") %>" class="responsive-img">
+                </div>
+                <h6><%= link_to trip.name, user_trip_path(trip.user_id, trip) %><br>   </h6>
+                <button class="waves-effect wave-light teal lighten-3 btn-small">
+                    <%= form_tag user_trip_path(current_user.id, trip.id), method: :delete %>
+                    <%= submit_tag "Delete" %> <i class="material-icons left">delete</i>
+                </button>
+                <button class="waves-effect wave-light teal lighten-3 btn-small">
+                    <%= form_tag user_trip_path(current_user.id, trip.id), method: :edit %>
+                    <%= submit_tag "Edit" %> <i class="material-icons left">edit</i>
+                </button>
             </div>
         <% end %>
     <% end %>
