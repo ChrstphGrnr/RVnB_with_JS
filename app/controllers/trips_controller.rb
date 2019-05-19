@@ -2,7 +2,6 @@ class TripsController < ApplicationController
    
     def new
         if user_signed_in? && params[:rv_id]
-            # byebug
             @trip = Trip.new(rv_id: params[:rv_id], user_id: current_user.id)
         else 
             redirect_to new_user_session_path, alert: "Please login before creating a new Trip"
@@ -11,10 +10,11 @@ class TripsController < ApplicationController
     end
 
     def create
-        # byebug
         @trip = Trip.new(trip_params)
         if @trip.save 
-            @trip.rv.trip_count += 1
+            rv = Rv.find_by(id: @trip.rv_id)
+            rv.trip_count += 1 
+            rv.save
             redirect_to user_trip_path(current_user, @trip)
         else
             render 'trips/new', alert: "Invalid Data, please try again."
@@ -30,11 +30,13 @@ class TripsController < ApplicationController
         # if not logged_in -> Trip.all - if rv_id in params -> rv.trips - if user_id is in params -> user.trips
         if !user_signed_in? 
             redirect_to new_user_session_path, alert: "Please SignIn to see your trips or to create new Trips!"
-        elsif params[:rv_id]
+        elsif user_signed_in? && params[:rv_id]
            rv = Rv.find(params[:rv_id])
            @trips = rv.trips
         elsif user_signed_in?
             @trips = Trip.trips_by_user(current_user.id)
+        else 
+            redirect_to '', alert: "You do not have permission to view this page!"
         end
     end
 
