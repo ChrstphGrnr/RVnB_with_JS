@@ -19,11 +19,11 @@
                 </div>
                 <h6><%= link_to trip.name, user_trip_path(trip.user_id, trip) %><br>   </h6>
                 <button class="waves-effect wave-light teal lighten-3 btn-small">
-                    <%= form_tag user_trip_path(current_user.id, trip.id), method: :delete %>
+                    <%= form_tag trip_path(trip.id), method: :delete %>
                     <%= submit_tag "Delete" %> <i class="material-icons left">delete</i>
                 </button>
                 <button class="waves-effect wave-light teal lighten-3 btn-small">
-                    <%= form_tag user_trip_path(current_user.id, trip.id), method: :edit %>
+                    <%= form_tag trip_path(trip.id), method: :edit %>
                     <%= submit_tag "Edit" %> <i class="material-icons left">edit</i>
                 </button>
             </div>
