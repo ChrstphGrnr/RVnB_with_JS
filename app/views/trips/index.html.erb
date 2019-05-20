@@ -18,14 +18,15 @@
                 <img src="<%= asset_path("#{trip.rv.name}.jpg") %>" class="responsive-img">
                 </div>
                 <h6><%= link_to trip.name, user_trip_path(trip.user_id, trip) %><br>   </h6>
-                <button class="waves-effect wave-light teal lighten-3 btn-small">
-                    <%= form_tag trip_path(trip.id), method: :delete %>
-                    <%= submit_tag "Delete" %> <i class="material-icons left">delete</i>
+                <button class="waves-effect wave-light teal lighten-3 btn-small" >
+                    <%= link_to "delete", {action: :destroy, id: trip.id}, method: :delete, data: {confirm: "Are you sure?"} %>
+                    <i class="material-icons left">delete</i>
                 </button>
                 <button class="waves-effect wave-light teal lighten-3 btn-small">
-                    <%= form_tag trip_path(trip.id), method: :edit %>
-                    <%= submit_tag "Edit" %> <i class="material-icons left">edit</i>
+                    <%= link_to "edit", edit_user_trip_path(current_user, trip) %>
+                    <i class="material-icons left">edit</i>
                 </button>
+
             </div>
         <% end %>
     <% end %>
