@@ -15,7 +15,7 @@ class TripsController < ApplicationController
             rv = Rv.find_by(id: @trip.rv_id)
             rv.trip_count += 1 
             rv.save
-            redirect_to user_trip_path(current_user, @trip)
+            redirect_to user_trip_path(current_user.id, @trip)
         else
             render 'trips/new', alert: "Invalid Data, please try again."
         end
