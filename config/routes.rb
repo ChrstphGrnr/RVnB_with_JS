@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'application#welcome'
 
-  get '/sort_by_price', to: 'rvs#sort_by_price', as: '/sort_by_price'
+  get '/sort_by_price', to: 'rvs#sort_by_price'
   
 end

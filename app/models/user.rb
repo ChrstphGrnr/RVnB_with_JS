@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:github]
   has_many :rvs, through: :trips
+  has_many :trips
+  has_many :owned_rvs, :class_name => "Rv", :foreign_key => :owner_id
 
   def self.from_omniauth(auth)
     if !auth.token

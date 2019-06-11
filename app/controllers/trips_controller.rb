@@ -11,8 +11,9 @@ class TripsController < ApplicationController
 
     def create
         @trip = Trip.new(trip_params)
-        if @trip.save 
-            rv = Rv.find_by(id: @trip.rv_id)
+        rv = Rv.find_by(id: @trip.rv_id)
+        if @trip.valid? && rv.available?(@trip.start_date, @trip.end_date)
+            @trip.save
             rv.trip_count += 1 
             rv.save
             redirect_to user_trip_path(current_user.id, @trip)
