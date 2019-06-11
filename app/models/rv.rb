@@ -1,7 +1,7 @@
 class Rv < ApplicationRecord
     has_many :trips
     has_many :users, through: :trips
-    belongs_to :owner, :class_name => "User"
+    
     
     scope :highest_trip_count, -> {order("trip_count DESC").first}
 

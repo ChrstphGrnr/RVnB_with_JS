@@ -4,13 +4,16 @@ class RvsController < ApplicationController
     # end
 
     # def create
+    #     rv = Rv.new(rv_params)
+    #     rv.save 
     # end
 
-    # def edit 
-    # end
+    def edit 
+    end
     
     def index
         @rvs = Rv.all
+        
     end
 
     def sort_by_price 
@@ -25,9 +28,9 @@ class RvsController < ApplicationController
     # def destroy
     # end
 
-    private 
+    # private 
     
-        def rv_params
-            params.require(:rv).permit(:name, :owner_id, :sleeps, :price, :trip_count)
-        end
+    #     def rv_params
+    #         params.require(:rv).permit(:name, :sleeps, :price, :trip_count)
+    #     end
 end
