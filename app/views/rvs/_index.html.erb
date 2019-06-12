@@ -7,6 +7,8 @@
     </span>
 </div>
 
+<div class="top-container"></div>
+
 <div class="row">
 
     <% @rvs.each do |rv|%>
@@ -16,7 +18,7 @@
             <div class="card-image">
               <img src="<%= asset_path("#{rv.name}.jpg") %>" class="responsive-img">
               <span class="card-title"><%=rv.name%></span>
-              <a href='<%= rv_path(rv) %>' class="btn-floating halfway-fab waves-effect waves-light teal darken-1 pulse"><i class="material-icons">launch</i></a>  
+              <a  href='<%= rv_path(rv) %>' class="btn-floating halfway-fab waves-effect waves-light teal darken-1 pulse"><i id="<%= rv.id %>" class="material-icons">launch</i></a>  
             </div>
             <div class="card-content">
                 <p>Sleeps: <%= rv.sleeps %></p>
