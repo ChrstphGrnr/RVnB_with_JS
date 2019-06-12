@@ -13,7 +13,10 @@ class RvsController < ApplicationController
     
     def index
         @rvs = Rv.all
-        
+        respond_to do |f|
+            f.html {render :index}
+            f.json {render json: @rvs}
+        end        
     end
 
     def sort_by_price 
@@ -23,6 +26,10 @@ class RvsController < ApplicationController
 
     def show 
         @rv = Rv.find(params[:id])
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @rv}
+        end
     end
 
     # def destroy
