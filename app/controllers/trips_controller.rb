@@ -25,6 +25,10 @@ class TripsController < ApplicationController
 
     def show 
         @trip = Trip.find(params[:id])
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @trip}
+        end
     end
 
     def index
@@ -33,8 +37,16 @@ class TripsController < ApplicationController
         elsif user_signed_in? && params[:rv_id]
            rv = Rv.find(params[:rv_id])
            @trips = rv.trips
+           respond_to do |f|
+                f.html {render :index}
+                f.json {render json: @trips}
+           end
         elsif user_signed_in?
             @trips = Trip.trips_by_user(current_user.id)
+            respond_to do |f|
+                f.html {render :index}
+                f.json {render json: @trips}
+            end
         else 
             redirect_to '', alert: "You do not have permission to view this page!"
         end
