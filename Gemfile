@@ -31,6 +31,7 @@ gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'materialize-sass'
+gem 'jquery-rails'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
