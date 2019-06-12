@@ -1,13 +1,16 @@
-<div><p>Destination: <%= @trip.name %> </p></div>
+<div><p>Destination: <strong><%= @trip.name %> </strong></p></div>
 
-RV Name: <%= @trip.rv.name %>
+RV Name: <strong><%= @trip.rv.name %></strong>
 <br>
-<p>Number of Guests: <%= @trip.guests %></p>
+<p>Number of Guests: <strong><%= @trip.guests %></strong></p>
+
+Start Date: <strong><%= @trip.start_date %></strong>  <br>
+End Date: <strong><%= @trip.end_date %></strong>
 
 <br>
 
-<p>    Total Trip Price:</p>
-<%= @trip.total_price %>
+<p>    Total Trip Price: <strong><%= @trip.total_price %></strong></p>
+
 <br>
 
 <button class="waves-effect wave-light teal lighten-3 btn-small" >
