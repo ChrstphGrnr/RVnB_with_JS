@@ -32,6 +32,8 @@ gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'materialize-sass'
 
+gem 'active_model_serializers', '~> 0.10.0'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
