@@ -27,8 +27,8 @@ class RvsController < ApplicationController
     def show 
         @rv = Rv.find(params[:id])
         respond_to do |f|
-            f.html {render :show}
             f.json {render json: @rv}
+            f.html {render :show}
         end
     end
 
