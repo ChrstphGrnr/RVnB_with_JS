@@ -68,21 +68,8 @@ Rv.prototype.rvHTML = function() {
 
 };
 
-
-
-
-// function listenForSecondClick(html) {
-//     // debugger
-//     $('[name="trips"]').on('click', function(e) {
-//         // debugger
-//         e.preventDefault();
-//         console.log(html);
-//     });
-// };
-
-
 function createNewTripForm(id) {
-    debugger;
+    // debugger;
     formHTML = (`
     <form name="newTrip"  onsubmit="return validateTrip()">
       <div class="container">  
@@ -93,6 +80,14 @@ function createNewTripForm(id) {
       <p><input type="submit" value="Submit"></p>
       </div>
     </form>`);
-    $('[name="show-container"]').append(formHTML);
-    validateTrip();
+    $('[name="show-container"]').append(formHTML).done(validateTrip(id));
+};
+
+function validateTrip(id) {
+    let name = document.forms['newTrip']['tname'].value;
+    let guests = document.forms['newTrip']['tguests'].value;
+    let startDate = document.forms['newTrip']['tstartdate'].value;
+    let endDate = document.forms['newTrip']['tenddate'].value;
+    
+    debugger
 };
