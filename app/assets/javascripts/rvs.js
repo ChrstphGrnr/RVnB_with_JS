@@ -22,12 +22,13 @@ function newRv(data) {
     let myRvHtml = myRv.rvHTML();
     document.querySelector('div.top-container').innerHTML = myRvHtml;
     // debugger
-
+    // listenForSecondClick(myRvHtml);
 };
 
 
 class Rv {
     constructor(obj){
+        // debugger
         this.id = obj.id;
         this.name = obj.name;
         this.sleeps = obj.sleeps;
@@ -41,14 +42,43 @@ class Rv {
 Rv.prototype.rvHTML = function() {
     // debugger
     return(
-    `<img src="/assets/" + ${this.name} + ".jpg" alt="${this.name}" class="responsive-img circle">
-    <h3>${this.name}</h3>
-    <h6>Sleeps: ${this.sleeps}</h6>
-    <h6>Price/Night: $${this.price}</h6>
-
+        
+    `<div class="col s12">
+        <div class="card teal lighten-3 z-depth-5">
+        <img src="/assets/${this.name}.jpg" alt="${this.name}" class="responsive-img circle">
+        <center><h3>${this.name}</h3>
+        <h6>Sleeps: ${this.sleeps}</h6>
+        <h6>Price/Night: $${this.price}</h6></center>
+        <br>
+        <br>
+        <center>
+            <p> <button onclick="createNewTripForm(${this.id})" id="${this.id}" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
+                <button id="${this.id}" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
+        </center>
+        <br>
+        <br>
+        </div>
+    </div>
     
     <br>
     <br>
-    `)
+    `);
 
+};
+
+
+
+
+// function listenForSecondClick(html) {
+//     // debugger
+//     $('[name="trips"]').on('click', function(e) {
+//         // debugger
+//         e.preventDefault();
+//         console.log(html);
+//     });
+// };
+
+
+function createNewTripForm(id) {
+    debugger;
 }
