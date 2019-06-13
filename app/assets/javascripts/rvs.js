@@ -21,6 +21,8 @@ function newRv(data) {
     let myRv = new Rv(data);
     let myRvHtml = myRv.rvHTML();
     document.querySelector('div.top-container').innerHTML = myRvHtml;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     // debugger
     // listenForSecondClick(myRvHtml);
 };
@@ -44,7 +46,7 @@ Rv.prototype.rvHTML = function() {
     return(
         
     `<div class="col s12">
-        <div class="card teal lighten-3 z-depth-5">
+        <div name="show-container" class="card teal lighten-3 z-depth-5">
         <img src="/assets/${this.name}.jpg" alt="${this.name}" class="responsive-img circle">
         <center><h3>${this.name}</h3>
         <h6>Sleeps: ${this.sleeps}</h6>
@@ -52,8 +54,8 @@ Rv.prototype.rvHTML = function() {
         <br>
         <br>
         <center>
-            <p> <button onclick="createNewTripForm(${this.id})" id="${this.id}" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
-                <button id="${this.id}" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
+            <p> <button id="${this.id}" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
+                <button onclick="createNewTripForm(${this.id})" id="${this.id}" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
         </center>
         <br>
         <br>
@@ -81,4 +83,16 @@ Rv.prototype.rvHTML = function() {
 
 function createNewTripForm(id) {
     debugger;
-}
+    formHTML = (`
+    <form name="newTrip"  onsubmit="return validateTrip()">
+      <div class="container">  
+      <p>Trip Name: <input type="text" name="tname"></p>
+      <p># of guests: <input type="text" name="tguests"></p>
+      <p>Start Date: <input type="date" name="tstartdate"></p>
+      <p>End Date: <input type="date" name="tenddate"></p>
+      <p><input type="submit" value="Submit"></p>
+      </div>
+    </form>`);
+    $('[name="show-container"]').append(formHTML);
+    validateTrip();
+};
