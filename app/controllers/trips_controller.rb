@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
    
     def new
         if user_signed_in? && params[:rv_id]
@@ -10,16 +12,19 @@ class TripsController < ApplicationController
     end
 
     def create
+        # byebug
         @trip = Trip.new(trip_params)
-        rv = Rv.find_by(id: @trip.rv_id)
-        if @trip.valid? && rv.available?(@trip.start_date, @trip.end_date)
+        if user_signed_in? 
+            @trip.user_id = current_user.id
+            rv = Rv.find_by(id: @trip.rv_id)
             @trip.save
             rv.trip_count += 1 
             rv.save
-            redirect_to user_trip_path(current_user.id, @trip)
-        else
-            render 'trips/new', alert: "Invalid Data, please try again."
-        end
+            respond_to do |f|
+                f.html {render :show}
+                f.json {render json: @trip}
+            end
+        end 
     end
     
 
