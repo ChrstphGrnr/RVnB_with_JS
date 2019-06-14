@@ -54,8 +54,8 @@ Rv.prototype.rvHTML = function() {
         <br>
         <br>
         <center>
-            <p> <button id="${this.id}" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
-                <button onclick="createNewTripForm(${this.id})" id="${this.id}" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
+            <p> <button onclick="showTripsForm(${this.id})" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
+                <button onclick="createNewTripForm(${this.id})" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
         </center>
         <br>
         <br>
@@ -68,26 +68,65 @@ Rv.prototype.rvHTML = function() {
 
 };
 
+
+
 function createNewTripForm(id) {
-    // debugger;
-    formHTML = (`
-    <form name="newTrip"  onsubmit="return validateTrip()">
+    debugger;
+    var rvId = id
+    var formHTML = (`
+    <form name="newTrip">
       <div class="container">  
+      <input type="hidden" name="rvid" value="${rvId}">
       <p>Trip Name: <input type="text" name="tname"></p>
       <p># of guests: <input type="text" name="tguests"></p>
       <p>Start Date: <input type="date" name="tstartdate"></p>
       <p>End Date: <input type="date" name="tenddate"></p>
-      <p><input type="submit" value="Submit"></p>
+      <p><input id="new_trip_submit" type="submit" value="Submit"></p>
       </div>
     </form>`);
-    $('[name="show-container"]').append(formHTML).done(validateTrip(id));
+    $('[name="show-container"]').append(formHTML);
+    listenForSecondClick();
 };
 
-function validateTrip(id) {
-    let name = document.forms['newTrip']['tname'].value;
-    let guests = document.forms['newTrip']['tguests'].value;
-    let startDate = document.forms['newTrip']['tstartdate'].value;
-    let endDate = document.forms['newTrip']['tenddate'].value;
-    
-    debugger
+function listenForSecondClick() {
+    // debugger
+    $('#new_trip_submit').on('click', function(event){
+        event.preventDefault();
+        validateTrip();        
+    })
+}
+
+function validateTrip() {
+    //    debugger
+    var tripName = document.forms['newTrip']['tname'].value;
+    var tripGuests = document.forms['newTrip']['tguests'].value;
+    var tripStartDate = document.forms['newTrip']['tstartdate'].value;
+    var tripEndDate = document.forms['newTrip']['tenddate'].value;
+    var tripRvId = document.forms['newTrip']['rvid'].value;
+    var newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
+    // debugger
+    fetch('http://localhost:3000/trips', {
+        method: 'POST', 
+        body: JSON.stringify(newTrip),
+        headers: {
+            'Content-Type': 'application/json'
+        } 
+    }).then(resp => resp.json()).then(json => console.log(json));  
 };
+
+class Trip {
+    constructor(obj) {
+        this.name = obj.name;
+        this.guests = obj.guests;
+        this.startDate = obj.start_date;
+        this.endDate = obj.end_date;
+
+    }
+}
+
+
+
+
+function showTripsForm(id) {
+    debugger
+}
