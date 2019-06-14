@@ -24,8 +24,8 @@ class TripsController < ApplicationController
                 f.json {render json: @trip}
             end
         else 
-            render :index
             alert["Please sign in!"]
+            render :index
         end 
     end
     

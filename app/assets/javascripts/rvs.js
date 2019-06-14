@@ -23,8 +23,6 @@ function newRv(data) {
     document.querySelector('div.top-container').innerHTML = myRvHtml;
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    // debugger
-    // listenForSecondClick(myRvHtml);
 };
 
 
@@ -72,8 +70,8 @@ Rv.prototype.rvHTML = function() {
 
 function createNewTripForm(id) {
     // debugger;
-    var rvId = id
-    var formHTML = (`
+    let rvId = id
+    let formHTML = (`
     <form name="newTrip">
       <div class="container">  
       <input type="hidden" name="rvid" value="${rvId}">
@@ -98,12 +96,12 @@ function listenForSecondClick() {
 
 function validateTrip() {
     //    debugger
-    var tripName = document.forms['newTrip']['tname'].value;
-    var tripGuests = document.forms['newTrip']['tguests'].value;
-    var tripStartDate = document.forms['newTrip']['tstartdate'].value;
-    var tripEndDate = document.forms['newTrip']['tenddate'].value;
-    var tripRvId = document.forms['newTrip']['rvid'].value;
-    var newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
+    let tripName = document.forms['newTrip']['tname'].value;
+    let tripGuests = document.forms['newTrip']['tguests'].value;
+    let tripStartDate = document.forms['newTrip']['tstartdate'].value;
+    let tripEndDate = document.forms['newTrip']['tenddate'].value;
+    let tripRvId = document.forms['newTrip']['rvid'].value;
+    let newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
     // debugger
     return fetch('http://localhost:3000/trips', {
         method: 'POST', 
@@ -114,8 +112,8 @@ function validateTrip() {
         } 
     }).then(resp => resp.json()).then(function(json){
         debugger
-        var newTrip = new Trip(json);
-        var newTripHtml = newTrip.tripHtml();
+        let newTrip = new Trip(json);
+        let newTripHtml = newTrip.tripHtml();
         $('[name="show-container"]').html(newTripHtml);
     })
         
