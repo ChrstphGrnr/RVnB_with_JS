@@ -71,7 +71,7 @@ Rv.prototype.rvHTML = function() {
 
 
 function createNewTripForm(id) {
-    debugger;
+    // debugger;
     var rvId = id
     var formHTML = (`
     <form name="newTrip">
@@ -105,13 +105,20 @@ function validateTrip() {
     var tripRvId = document.forms['newTrip']['rvid'].value;
     var newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
     // debugger
-    fetch('http://localhost:3000/trips', {
+    return fetch('http://localhost:3000/trips', {
         method: 'POST', 
         body: JSON.stringify(newTrip),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         } 
-    }).then(resp => resp.json()).then(json => console.log(json));  
+    }).then(resp => resp.json()).then(function(json){
+        debugger
+        var newTrip = new Trip(json);
+        var newTripHtml = newTrip.tripHtml();
+        $('[name="show-container"]').html(newTripHtml);
+    })
+        
 };
 
 class Trip {
@@ -120,8 +127,24 @@ class Trip {
         this.guests = obj.guests;
         this.startDate = obj.start_date;
         this.endDate = obj.end_date;
-
     }
+
+}
+
+Trip.prototype.tripHtml = function() {
+    debugger
+    return (`
+        <h1> ${this.name}</h1>
+        <h6> by ${this.user.first_name}</h5>
+        <br>
+        <h4> RV : ${this.rv.name}</h5>
+        <img src="/assets/${this.rv.name}.jpg" alt="${this.rv.name}" class="responsive-img circle">
+        <br>
+        <h4>Guests: ${this.guests}</h4>
+        <h4>Start Date: ${this.startDate}</h4>
+        <h4>End Date: ${this.endDate}</h4>
+
+    `)
 }
 
 
