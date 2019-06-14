@@ -125,6 +125,8 @@ class Trip {
         this.guests = obj.guests;
         this.startDate = obj.start_date;
         this.endDate = obj.end_date;
+        this.user = obj.user
+        this.rv = obj.rv
     }
 
 }
@@ -149,5 +151,9 @@ Trip.prototype.tripHtml = function() {
 
 
 function showTripsForm(id) {
-    debugger
-}
+        let rvId = id
+        fetch(`http://localhost:3000/rvs/`+ rvId + '.json').then(resp => resp.json()).then(function(json){
+            debugger
+        });  
+    
+};
