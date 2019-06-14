@@ -63,8 +63,11 @@ Rv.prototype.rvHTML = function() {
     <br>
     <br>
     `);
-
 };
+
+Rv.prototype.rvTripsHtml = function () {
+    debugger
+}
 
 
 
@@ -153,7 +156,12 @@ Trip.prototype.tripHtml = function() {
 function showTripsForm(id) {
         let rvId = id
         fetch(`http://localhost:3000/rvs/`+ rvId + '.json').then(resp => resp.json()).then(function(json){
+            // console.log(json)    
+            // debugger
+            let rv = new Rv(json)
+            rv.rvTripsHtml
             debugger
+            
         });  
     
 };
