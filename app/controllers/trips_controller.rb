@@ -13,9 +13,8 @@ class TripsController < ApplicationController
 
     def create
         # byebug
-        @trip = Trip.new(trip_params)
+        @trip = current_user.trips.build(trip_params)
         if user_signed_in? 
-            @trip.user_id = current_user.id
             rv = Rv.find_by(id: @trip.rv_id)
             @trip.save
             rv.trip_count += 1 
@@ -24,6 +23,9 @@ class TripsController < ApplicationController
                 f.html {render :show}
                 f.json {render json: @trip}
             end
+        else 
+            render :index
+            alert["Please sign in!"]
         end 
     end
     
