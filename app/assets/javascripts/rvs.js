@@ -25,6 +25,7 @@ function newRv(data) {
     document.documentElement.scrollTop = 0;
 };
 
+let rv = null
 
 class Rv {
     constructor(obj){
@@ -36,6 +37,7 @@ class Rv {
         this.tripCount = obj.trip_count;
         this.trips = obj.trips;
         this.users = obj.users;
+        rv = this
     };
 };
 
@@ -45,18 +47,23 @@ Rv.prototype.rvHTML = function() {
         
     `<div class="col s12">
         <div name="show-container" class="card teal lighten-3 z-depth-5">
-        <img src="/assets/${this.name}.jpg" alt="${this.name}" class="responsive-img circle">
-        <center><h3>${this.name}</h3>
-        <h6>Sleeps: ${this.sleeps}</h6>
-        <h6>Price/Night: $${this.price}</h6></center>
-        <br>
-        <br>
-        <center>
-            <p> <button onclick="showTripsForm(${this.id})" name="trips" class="btn waves-effect waves-light z-depth-5">Trips<i class="material-icons left">airplanemode_active</i></button>
-                <button onclick="createNewTripForm(${this.id})" name="new-trip" class="btn waves-effect waves-light z-depth-5">New Trip<i class="material-icons right">card_travel</i></button>
-        </center>
-        <br>
-        <br>
+            <img src="/assets/${this.name}.jpg" alt="${this.name}" class="responsive-img circle">
+            <center><h3>${this.name}</h3>
+            <h6>Sleeps: ${this.sleeps}</h6>
+            <h6>Price/Night: $${this.price}</h6></center>
+            <br>
+            <br>
+            <center>
+                <p> <button onclick="showTrips(${this.id})" name="trips" class="btn waves-effect waves-light z-depth-5">Booked Trips<i class="material-icons left">airplanemode_active</i></button>
+                    <button onclick="createNewTripForm(${this.id})" name="new-trip" class="btn waves-effect waves-light z-depth-5">Create Trip<i class="material-icons right">card_travel</i></button>
+            </center>
+            <br>
+            <br>
+            <div id="trips"></div>
+            <br>
+            <div id="trip-form"></div>
+            <br>
+            <br>
         </div>
     </div>
     
@@ -65,14 +72,13 @@ Rv.prototype.rvHTML = function() {
     `);
 };
 
-Rv.prototype.rvTripsHtml = function () {
-    debugger
-}
+
 
 
 
 function createNewTripForm(id) {
     // debugger;
+    
     let rvId = id
     let formHTML = (`
     <form name="newTrip">
@@ -82,10 +88,14 @@ function createNewTripForm(id) {
       <p># of guests: <input type="text" name="tguests"></p>
       <p>Start Date: <input type="date" name="tstartdate"></p>
       <p>End Date: <input type="date" name="tenddate"></p>
-      <p><input id="new_trip_submit" type="submit" value="Submit"></p>
+      <p><input class="btn waves-effect waves-light z-depth-5" id="new_trip_submit" type="submit" value="Submit"></p>
+      <br>
+      <br>
       </div>
     </form>`);
-    $('[name="show-container"]').append(formHTML);
+    debugger
+    $('div#trip-form').html('');
+    $('div#trip-form').append(formHTML);
     listenForSecondClick();
 };
 
@@ -114,7 +124,7 @@ function validateTrip() {
             'Accept': 'application/json'
         } 
     }).then(resp => resp.json()).then(function(json){
-        debugger
+        // debugger
         let newTrip = new Trip(json);
         let newTripHtml = newTrip.tripHtml();
         $('[name="show-container"]').html(newTripHtml);
@@ -135,7 +145,7 @@ class Trip {
 }
 
 Trip.prototype.tripHtml = function() {
-    debugger
+    // debugger
     return (`
         <h1> ${this.name}</h1>
         <h6> by ${this.user.first_name}</h5>
@@ -153,15 +163,25 @@ Trip.prototype.tripHtml = function() {
 
 
 
-function showTripsForm(id) {
-        let rvId = id
-        fetch(`http://localhost:3000/rvs/`+ rvId + '.json').then(resp => resp.json()).then(function(json){
-            // console.log(json)    
-            // debugger
-            let rv = new Rv(json)
-            rv.rvTripsHtml
-            debugger
-            
-        });  
-    
+function showTrips() {
+    debugger
+    $('#trips').html('');
+    if (rv.tripCount === 0) {
+        $('#trips').append(`<p><center>Be the first to book a trip with <strong>${rv.name}</strong>!</center></p>`)
+    } else if (rv.tripCount === 0) { 
+            $('#trips').append(`<p><center>The following trip has been booked with <strong>${rv.name}</strong>:</center></p>`)
+    } else {
+        $('#trips').append(`<p><center>The following ${rv.tripCount} trips have been booked with <strong>${rv.name}</strong>:</center></p>`)
+    };
+    rv.trips.forEach(function(trip){
+        $("#trips").append(`<center>
+            <h5>${trip.name}</h3>
+            <br>
+            <h6>Destination: ${trip.name}</h5>
+            <h6>Start Date: ${trip.start_date}</h5>
+            <h6>End Date: ${trip.end_date}</h5></center>
+            <br>
+        `)    
+    })
+
 };
