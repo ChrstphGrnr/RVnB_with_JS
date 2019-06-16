@@ -168,7 +168,7 @@ function showTrips() {
     $('#trips').html('');
     if (rv.tripCount === 0) {
         $('#trips').append(`<p><center>Be the first to book a trip with <strong>${rv.name}</strong>!</center></p>`)
-    } else if (rv.tripCount === 0) { 
+    } else if (rv.tripCount === 1) { 
             $('#trips').append(`<p><center>The following trip has been booked with <strong>${rv.name}</strong>:</center></p>`)
     } else {
         $('#trips').append(`<p><center>The following ${rv.tripCount} trips have been booked with <strong>${rv.name}</strong>:</center></p>`)
