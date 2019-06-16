@@ -14,7 +14,7 @@ function listenForClick() {
 
 function getRv(id) {
     let rvId = id
-    fetch(`http://localhost:3000/rvs/`+ rvId + '.json').then(resp => resp.json()).then(json => newRv(json));  
+    fetch(`https://rv-n-b.herokuapp.com/rvs/`+ rvId + '.json').then(resp => resp.json()).then(json => newRv(json));  
 };
 
 function newRv(data) {
@@ -116,7 +116,7 @@ function validateTrip() {
     let tripRvId = document.forms['newTrip']['rvid'].value;
     let newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
     // debugger
-    return fetch('http://localhost:3000/trips', {
+    return fetch('https://rv-n-b.herokuapp.com/trips', {
         method: 'POST', 
         body: JSON.stringify(newTrip),
         headers: {
