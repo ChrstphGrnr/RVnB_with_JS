@@ -15,11 +15,12 @@ trip with it. The result of clicking on either link will also result in a dynami
 
 - go to rv-bnb.herokuapp.com and create a new user account by clicking SignUp. Then browse to your heart's content. 
 
-- go to the master branch in the authors Github, https://github.com/ChrstphGrnr/RVBnB 
+- go to the master branch in the authors Github, https://github.com/ChrstphGrnr/RVnB_with_JS
 and fork the repo. 
 <br>Use your favorite local environment to clone the repo, then, while in the repo's directory in your console, run the following commands
-```bundle install``` and ```rails s```
-<br>Then go to your browser, open <a href="localhost:3000">localhost:3000</a> and enjoy the app.
+```bundle install``` followed by ```rake db:dcms``` and then ```rails s```
+<br>After the server is up and running, go to your browser, open <a href="localhost:3000">localhost:3000</a> and enjoy the app.
+You can find the JS functionality by clicking on the little green button by an RV...
 
 
 ## Authors 
