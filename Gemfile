@@ -32,6 +32,7 @@ gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'materialize-sass'
 gem 'jquery-rails'
+gem 'ffi', '>=1.11.1'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
