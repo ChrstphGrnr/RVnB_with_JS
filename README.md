@@ -1,10 +1,13 @@
 # RVBnB
 
 This was created as a part of the Flatiron School online webdeveloper program. 
-The purpose is to show how a user can create trips with an RV of their choosing. 
-Implemented are 2 has_many: :through and 1 belongs_to: ActiveRecord relationships. 
-Further features will include Owners that can create new RVs for Users to rent and RVs to have calendars with already booked dates in them.  
+This is an extension of the already existing RVBnB app created as part of the rails section in the curriculum. 
+(RVBnB can be found <a href="http://rv-bnb.herokuapp.com/">here</a>)
 
+Additional to the rails app already existing, this version added certain JS functionality. 
+Mainly, instead of rerouting you to the individual RV's show page, the  information about a specific RV will be rendered dynamically on the index page
+without a refresh or redirect. Integrated into the newly rendered html are two links that give 2 options. See the trips already booked with this RV or book an new
+trip with it. The result of clicking on either link will also result in a dynamic render of either the booked trips or the new trip form. 
 
 ## Installing 
 
