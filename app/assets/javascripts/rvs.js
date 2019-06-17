@@ -47,7 +47,7 @@ Rv.prototype.rvHTML = function() {
         
     `<div class="col s12">
         <div name="show-container" class="card teal lighten-3 z-depth-5">
-            <img src="<%= asset_path(${this.name}.jpg) %>" alt="${this.name}" class="responsive-img circle">
+            <img src="${this.name}.jpg %>" alt="${this.name}" class="responsive-img circle">
             <center><h3>${this.name}</h3>
             <h6>Sleeps: ${this.sleeps}</h6>
             <h6>Price/Night: $${this.price}</h6></center>
@@ -151,7 +151,7 @@ Trip.prototype.tripHtml = function() {
         <h6> by ${this.user.first_name}</h5>
         <br>
         <h4> RV : ${this.rv.name}</h5>
-        <img src="<%= asset_path(${this.rv.name}).jpg%>" alt="${this.rv.name}" class="responsive-img circle">
+        <img src="/assets/${this.rv.name}.jpg" alt="${this.rv.name}" class="responsive-img circle">
         <br>
         <h4>Guests: ${this.guests}</h4>
         <h4>Start Date: ${this.startDate}</h4>
