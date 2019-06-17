@@ -47,7 +47,7 @@ Rv.prototype.rvHTML = function() {
         
     `<div class="col s12">
         <div name="show-container" class="card teal lighten-3 z-depth-5">
-            <img src="${this.name}.jpg %>" alt="${this.name}" class="responsive-img circle">
+            <img src="/assets/${this.name}.jpg" alt="${this.name}" class="responsive-img circle">
             <center><h3>${this.name}</h3>
             <h6>Sleeps: ${this.sleeps}</h6>
             <h6>Price/Night: $${this.price}</h6></center>
