@@ -8,14 +8,14 @@ function listenForClick() {
         e.preventDefault();
         // debugger
         let id = this.id
+        debugger
         getRv(id);
     });
 };
 
 function getRv(id) {
     let rvId = id
-    const proxyurl = "https://cors-anywhere.herokuapp.com/"
-    fetch(`https://rv-n-b.herokuapp.com/rvs/`+ rvId + '.json' + proxyurl ).then(resp => resp.json()).then(json => newRv(json));  
+    fetch(`https://rv-n-b.herokuapp.com/rvs/`+ rvId + '.json').then(resp => resp.json()).then(json => newRv(json));  
 };
 
 function newRv(data) {
