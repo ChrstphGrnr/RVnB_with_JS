@@ -14,7 +14,8 @@ function listenForClick() {
 
 function getRv(id) {
     let rvId = id
-    fetch(`https://rv-n-b.herokuapp.com/rvs/`+ rvId + '.json').then(resp => resp.json()).then(json => newRv(json));  
+    const proxyurl = "https://cors-anywhere.herokuapp.com/"
+    fetch(`https://rv-n-b.herokuapp.com/rvs/`+ rvId + '.json' + proxyurl ).then(resp => resp.json()).then(json => newRv(json));  
 };
 
 function newRv(data) {
