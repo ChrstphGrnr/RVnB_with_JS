@@ -1,6 +1,7 @@
 $(function() {
     console.log('rvs.js is loaded...');
     listenForClick();
+    listenForMyTrips();
 });
 
 function listenForClick() {
@@ -164,7 +165,7 @@ Trip.prototype.tripHtml = function() {
 
 
 function showTrips() {
-    debugger
+    // debugger
     $('#trips').html('');
     if (rv.tripCount === 0) {
         $('#trips').append(`<p><center>Be the first to book a trip with <strong>${rv.name}</strong>!</center></p>`)
@@ -185,3 +186,34 @@ function showTrips() {
     })
 
 };
+
+
+
+function listenForMyTrips() {
+    $('div.my-trips a').on('click', function(e){
+        // debugger
+        $('#top-container').innerHTML = '';
+        var sortByProperty = function (property) {
+            return function (x, y) {
+                return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+            };
+        };
+        e.preventDefault();
+        fetch(`http://localhost:3000/users/1/trips.json`).then(resp => resp.json()).then(json => {
+            let newJson = json.sort(sortByProperty('name'))
+
+            newJson.forEach(function(trip){
+                $(".top-container").append(`<center>
+                    <h5>${trip.name}</h3>
+                    <br>
+                    <h6>Destination: ${trip.name}</h5>
+                    <h6>Start Date: ${trip.start_date}</h5>
+                    <h6>End Date: ${trip.end_date}</h5></center>
+                    <br>
+                `)    
+            }); 
+            // debugger
+    });
+})
+}
+

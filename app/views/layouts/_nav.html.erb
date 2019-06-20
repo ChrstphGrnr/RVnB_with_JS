@@ -8,13 +8,14 @@
                         <li><%= link_to "SignIn", new_user_session_path %></li>
                     </ul>
                 <% else %>
-                    <a href="/" class="brand-logo center">RVB'n'B</a>
+                    
                     <ul id="nav-mobile" class="left hide-on-med-down">
                         <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
                         <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-                        <li><%= link_to "MyTrips", user_trips_path(current_user.id)  %></li>
+                        <li><div class="my-trips"><%= link_to "MyTrips", user_trips_path(current_user.id)  %></div></li>
                         <li><%= link_to "RVs", rvs_path %></li>
                     </ul>
+                    <a href="/" class="brand-logo center">RVB'n'B</a>
                 <% end %>
             </ul>
         </div>
