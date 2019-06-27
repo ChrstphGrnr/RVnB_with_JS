@@ -8,6 +8,7 @@ function listenForClick() {
         e.preventDefault();
         // debugger
         let id = this.id
+        debugger
         getRv(id);
     });
 };
