@@ -33,6 +33,7 @@ gem 'dotenv-rails'
 gem 'materialize-sass'
 gem 'jquery-rails'
 gem 'ffi', '>=1.11.1'
+gem 'rack-cors'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
