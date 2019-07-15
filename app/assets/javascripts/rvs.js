@@ -2,7 +2,7 @@ $(function() {
     console.log('rvs.js is loaded...');
     listenForClick();
 });
-
+    
 function listenForClick() {
     $('i.material-icons').on('click', function(e){
         e.preventDefault();
@@ -115,7 +115,7 @@ function validateTrip() {
     let tripStartDate = document.forms['newTrip']['tstartdate'].value;
     let tripEndDate = document.forms['newTrip']['tenddate'].value;
     let tripRvId = document.forms['newTrip']['rvid'].value;
-    let newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId, user: current_user}
+    let newTrip = {name: tripName, guests: tripGuests, start_date: tripStartDate, end_date: tripEndDate, rv_id: tripRvId}
     // debugger
     return fetch('https://rv-n-b.herokuapp.com/trips', {
         method: 'POST', 
@@ -139,7 +139,6 @@ class Trip {
         this.guests = obj.guests;
         this.startDate = obj.start_date;
         this.endDate = obj.end_date;
-        this.user = obj.user
         this.rv = obj.rv
     }
 
@@ -149,7 +148,6 @@ Trip.prototype.tripHtml = function() {
     // debugger
     return (`
         <h1> ${this.name}</h1>
-        <h6> by ${this.user.first_name}</h5>
         <br>
         <h4> RV : ${this.rv.name}</h5>
         <img src="/assets/${this.rv.name}.jpg" alt="${this.rv.name}" class="responsive-img circle">
