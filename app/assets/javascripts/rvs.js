@@ -149,7 +149,7 @@ Trip.prototype.tripHtml = function() {
     // debugger
     return (`
         <h1> ${this.name}</h1>
-        <h6> by ${this.current_user.first_name}</h5>
+        <h6> by ${current_user.first_name}</h5>
         <br>
         <h4> RV : ${this.rv.name}</h5>
         <img src="/assets/${this.rv.name}.jpg" alt="${this.rv.name}" class="responsive-img circle">
